@@ -1,27 +1,23 @@
-
+// Fetch data from server
 const fetchData = callBack => {
-    const url = 'http://data.fixer.io/api/latest?access_key=14a15c45c48c92bea5ab98276efd6f55';
+    const ApiKey = '14a15c45c48c92bea5ab98276efd6f55'
+    const url = 'http://data.fixer.io/api/latest?access_key=' + ApiKey;
     fetch(url)
     .then(res => res.json())
     .then(data => callBack(data))
 }
 
-
-
+// Set up currency list
 const currency = data => {
     const rates = data.rates;
-    // console.log(rates);
     const currencyName = Object.keys(rates);
     currencyName.forEach(name => {
         const fromCurrencyField = document.getElementById('fromCurrency');
         const toCurrencyField = document.getElementById('toCurrency');
-        fromCurrencyField.innerHTML += `
-            <option> ${name}</option>
-            `
-        toCurrencyField.innerHTML += `
-            <option> ${name}</option>
-            `
+        fromCurrencyField.innerHTML += `<option> ${name}</option>`
+        toCurrencyField.innerHTML += `<option> ${name}</option>`
     });
+    // Set default value of option
     const optionsFrom = document.querySelectorAll('#fromCurrency option');
     for (let i = 0; i < optionsFrom.length; i++) {
         const option = optionsFrom[i];
@@ -37,16 +33,14 @@ const currency = data => {
         }
     }
 }
- 
 
-const convertCurrency = () => {
-    const url = 'http://data.fixer.io/api/latest?access_key=14a15c45c48c92bea5ab98276efd6f55';
-    fetch(url)
-        .then(res => res.json())
-        .then(data => calculateAmount(data))
-   
+// Call currency function with fetch data
+fetchData(currency); 
 
-}
+// Convert currency with fetch data
+const convertCurrency = () => fetchData(calculateAmount);
+
+// Calculate converted amount of currency
 const calculateAmount = data => {
     const rates = data.rates;
     const fromCurrency = document.getElementById('fromCurrency').value;
@@ -58,36 +52,7 @@ const calculateAmount = data => {
     document.getElementById('convertedAmount').innerText = convertedAmount.toFixed(3);
 }
 
-fetchData(currency);
-
-
-
-
-
-
-
-
-// function convertCurrency() {
-//     convert('usd','bdt',usdToBdt);
-//     convert('bdt','usd',bdtToUsd);
-// }
-
-
-
-// function convert(from, to, rate) {
-//     let convertedAmount = 0;
-//     let fromCurrency = document.getElementById('fromCurrency');
-//     let toCurrency = document.getElementById('toCurrency');
-//     let inputAmount = document.getElementById('inputAmount');
-//     if (fromCurrency.value === from && toCurrency.value === to){
-//         convertedAmount = inputAmount.value * rate;
-//         document.getElementById('convertedAmount').innerText = convertedAmount.toFixed(3);
-//     }
-//     if(fromCurrency.value === toCurrency.value){
-//         document.getElementById('convertedAmount').innerText = inputAmount.value;
-//     }
-// }
-
+// Enter key event handler
 document.getElementById('inputAmount').addEventListener("keydown", function (event) {
     console.log(event.key);
     if (event.key === "Enter") {
