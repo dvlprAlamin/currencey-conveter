@@ -1,21 +1,11 @@
 
-
-
-
-
-const url = 'http://data.fixer.io/api/latest?access_key=14a15c45c48c92bea5ab98276efd6f55';
-fetch(url)
+const fetchData = callBack => {
+    const url = 'http://data.fixer.io/api/latest?access_key=14a15c45c48c92bea5ab98276efd6f55';
+    fetch(url)
     .then(res => res.json())
-    .then(data => currency(data))
-// const rates = data.rates;
-// // console.log(rates)
+    .then(data => callBack(data))
+}
 
-// const fromCurrency = document.getElementById('fromCurrency').value;
-// const toCurrency = document.getElementById('toCurrency').value;
-// // console.log(fromCurrency, toCurrency)
-// const from = rates.fromCurrency;
-// const to = rates.toCurrency;
-// convertCurrency(from, to)
 
 
 const currency = data => {
@@ -47,29 +37,28 @@ const currency = data => {
         }
     }
 }
-
+ 
 
 const convertCurrency = () => {
     const url = 'http://data.fixer.io/api/latest?access_key=14a15c45c48c92bea5ab98276efd6f55';
     fetch(url)
         .then(res => res.json())
-        .then(data => {
-            const rates = data.rates;
-            // const fromCurrency = document.getElementById('fromCurrency');
-            //     const toCurrency = document.getElementById('toCurrency');
-            // console.log(fromCurrency.value)
-            const from = rates[document.getElementById('fromCurrency').value];
-            const to = rates[document.getElementById('toCurrency').value];
-        
-            const inputAmount = parseFloat(document.getElementById('inputAmount').value);
-            const convertedAmount = (1 / from) * to * inputAmount;
-            console.log(from, to, inputAmount, convertedAmount)
-            document.getElementById('convertedAmount').innerText = convertedAmount.toFixed(3);
-        })
+        .then(data => calculateAmount(data))
    
 
 }
+const calculateAmount = data => {
+    const rates = data.rates;
+    const fromCurrency = document.getElementById('fromCurrency').value;
+    const toCurrency = document.getElementById('toCurrency').value;
+    const from = rates[fromCurrency];
+    const to = rates[toCurrency];
+    const inputAmount = parseFloat(document.getElementById('inputAmount').value);
+    const convertedAmount = (1 / from) * to * inputAmount;
+    document.getElementById('convertedAmount').innerText = convertedAmount.toFixed(3);
+}
 
+fetchData(currency);
 
 
 
