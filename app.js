@@ -19,19 +19,17 @@ const currency = data => {
     });
     // Set default value of option
     const optionsFrom = document.querySelectorAll('#fromCurrency option');
-    for (let i = 0; i < optionsFrom.length; i++) {
-        const option = optionsFrom[i];
+    optionsFrom.forEach(option => {
         if (option.text === 'USD') {
             option.setAttribute('selected', true);
         }
-    }
+    });
     const optionsTo = document.querySelectorAll('#toCurrency option');
-    for (let i = 0; i < optionsTo.length; i++) {
-        const option = optionsTo[i];
+    optionsTo.forEach(option => {
         if (option.text === 'BDT') {
             option.setAttribute('selected', true);
         }
-    }
+    });
 }
 
 // Call currency function with fetch data
