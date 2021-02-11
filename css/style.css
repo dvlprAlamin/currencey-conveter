@@ -1,0 +1,151 @@
+body {
+  font-family: "Comfortaa", cursive;
+  font-weight: normal;
+  position: relative;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 26px;
+  color: #e3e3e3;
+  overflow-x: hidden;
+  background: #16181c;
+}
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  color: #d2ff28;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.container {
+  max-width: 1170px;
+}
+.button {
+  color: #000;
+  cursor: pointer;
+  padding: 6px 30px;
+  margin-top: 1.5rem;
+  border: 1px solid #d2ff28;
+  font-weight: 800;
+  font-size: 16px;
+  position: relative;
+  background: #d2ff28;
+  font-family: "Comfortaa", cursive;
+}
+.button:hover,
+.button:focus {
+  color: #ffffff;
+  background: #53e3463f;
+  border: 1px solid #ffffff;
+  outline: none;
+}
+.banner {
+  position: relative;
+}
+.banner-info {
+  position: relative;
+  z-index: 999;
+}
+.banner .converter {
+  position: relative;
+}
+.banner .wave-poistion {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* z-index: 99; */
+}
+.banner .wave-poistion canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+.converted-amount,
+.converter {
+  padding: 3rem 4.5rem;
+}
+#inputAmount,
+#fromCurrency,
+#toCurrency,
+#convertedAmount {
+  background: #53e3463f;
+  color: #ffffff;
+  border-radius: 0;
+  width: 100%;
+}
+select option {
+  background: #53e3463f;
+  color: #000;
+}
+
+#expand,
+#collapse {
+  border: none;
+  outline: 0;
+  padding: 0px;
+  width: 80px;
+  cursor: pointer;
+  background: #d2ff28;
+  color: #000;
+  font-size: 10px;
+}
+#collapse {
+  display: none;
+}
+/* Calculator part css */
+@font-face {
+  font-family: "digital-7";
+  src: url("../font/digital-7.ttf");
+}
+button,
+input {
+  border: none;
+  outline: 0;
+}
+#calculator-body {
+  background-color: #464d5f;
+  max-width: 280px;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 5% auto;
+  border-radius: 10px;
+}
+#input-value {
+  margin-top: 40px;
+}
+#output-value {
+  text-align: right;
+  margin-bottom: 40px;
+}
+.display {
+  height: 35px;
+  width: 230px;
+  font-family: "digital-7";
+  font-size: 40px;
+  background-color: #666b66;
+}
+#all-keys {
+  display: grid;
+  grid-template-columns: repeat(5, 39px);
+  row-gap: 17px;
+  column-gap: 10px;
+  margin-bottom: 30px;
+}
+#all-keys button {
+  border-radius: 5px 5px 7px 7px;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  background-color: #6f7784;
+  color: azure;
+  height: 30px;
+  width: 39px;
+  font-size: 16px;
+}
+
+@media (max-width: 470px) {
+  .converted-amount,
+  .converter {
+    padding: 1rem;
+  }
+}
