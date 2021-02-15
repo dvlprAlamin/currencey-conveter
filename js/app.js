@@ -1,11 +1,11 @@
 // Fetch data from server
-const ApiKey = '14a15c45c48c92bea5ab98276efd6f55'
-const url = 'http://data.fixer.io/api/latest?access_key=' + ApiKey;
-fetch(url)
-.then(res => res.json())
-.then(data => {
-    localStorage.setItem("currencyRate", JSON.stringify(data));
-})
+// const ApiKey = '14a15c45c48c92bea5ab98276efd6f55'
+// const url = 'http://data.fixer.io/api/latest?access_key=' + ApiKey;
+// fetch(url)
+// .then(res => res.json())
+// .then(data => {
+//     localStorage.setItem("currencyRate", JSON.stringify(data));
+// })
 
 // Set up currency list
 const currencyName = () => {
